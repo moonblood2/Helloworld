@@ -21,15 +21,22 @@ class myKN():
         return prediction
 
     def closest(self, row):
-        best_dist=np.linalg.norm(row-self.x_train[i])
-        best_index=i
+        best_dist=[]
+        best_index = []
+        for i in range(self.k):
+            best_dist.append(np.linalg.norm(row-self.x_train[i]))
+            best_index.append(i)
             
         for i in range(1,len(self.x_train)):
             dist = np.linalg.norm(row-self.x_train[i])
-            if dist < best_dist:
-                best_dist = dist
-                best_index = i
-        return self.y_train[i]
+            for j in range(self.k):
+                if dist < best_dist[j]:
+                    best_dist[j] = dist
+                    best_index[j] = i
+                    break
+            counts = np.bincount(best_index)
+            index = np.argmax(counts)
+        return self.y_train[index]
         
 iris = datasets.load_iris()
 
