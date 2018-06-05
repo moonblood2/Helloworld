@@ -48,3 +48,4 @@ x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.25)
 clf = myKN()
 clf.fit(x_train,y_train)
 print(accuracy_score(y_test,clf.predict(x_test)))
+#hello this is me
